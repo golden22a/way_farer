@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 app.set('views', __dirname + '/views');      // Views directory
 app.use(express.static('public'));          // Static directory
 app.use(bodyParser.urlencoded({ extended: true })); // req.body
-
+//Yo Abdelhalim this is the response to the test!
 // Set CORS Headers
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
