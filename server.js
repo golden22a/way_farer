@@ -2,7 +2,7 @@ var express=require('express');
 var app=express();
 var db=require('./models/index.js');
 var bodyParser = require('body-parser');
-
+//carlos this is your tests
 // Configure app
 app.set('views', __dirname + '/views');      // Views directory
 app.use(express.static('public'));          // Static directory
