@@ -8,5 +8,10 @@ router.get('/okay', (req, res) => {
     user:res.user
   });
 });
-
+router.get('/felix',(req,res) => {
+  res.status(200).json({
+    message:'this is felix you are here because your token is valid means you are signed in',
+    user:res.user
+  });
+});
 module.exports = router;
