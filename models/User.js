@@ -2,14 +2,17 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
+
 UserSchema = new Schema({
 email:{type:String,
  index: { unique: true }
 },
 password:String,
 firstname:String,
-lastname:String
+lastname:String,
+city: {type: Schema.Types.ObjectId, ref: 'City'}
 });
+
 UserSchema.methods.comparePassword = function comparePassword(password, callback) {
   bcrypt.compare(password, this.password, callback);
 };

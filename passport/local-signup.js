@@ -12,7 +12,8 @@ module.exports = new PassportLocalStrategy({
     email: email.trim(),
     password: password.trim(),
     firstname: req.body.firstname.trim(),
-    lastname: req.body.lastname.trim()
+    lastname: req.body.lastname.trim(),
+    city:req.body.city
   };
 
   const newUser = new User(userData);
@@ -28,7 +29,8 @@ module.exports = new PassportLocalStrategy({
     const data = {
       firstname: user.firstname,
       lastname:user.lastname,
-      email:user.email
+      email:user.email,
+      city: user.city
     };
     return done(null,token,data);
   });
