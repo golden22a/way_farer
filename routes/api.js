@@ -16,7 +16,7 @@ router.get('/felix',(req,res) => {
   });
 });
 
-router.put('/:id', (req,res) => {
+router.put('/profile/:id', (req,res) => {
   console.log('you are here');
   var userId = req.params.id;
   if(userId == res.user._id){
@@ -28,7 +28,8 @@ router.put('/:id', (req,res) => {
     // update the users's profile
     foundUser.firstname = req.body.firstname || foundUser.firstname;
     foundUser.lastname = req.body.lastname || foundUser.lastname;
-    foundUser.email = req.body.email || foundUser.email
+    foundUser.email = req.body.email || foundUser.email;
+    foundUser.city = req.body.city || foundUser.city;
 
     // save updated user in db
     foundUser.save(function(err, savedUser) {
