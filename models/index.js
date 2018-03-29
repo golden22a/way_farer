@@ -4,3 +4,4 @@ mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/way_farer_back
 
 /* adding model User to index.js */
 module.exports.User = require('./User');
+module.exports.City = require('./City');

@@ -27,8 +27,10 @@ app.use('/api', authCheckMiddleware);
 //basic root route
 const authRoutes = require('./routes/auth');
 const apiRoutes = require('./routes/api');
+const cityRoutes = require('./routes/city');
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
+app.use('/city',cityRoutes);
 app.get('/',function(req,res){
   console.log('do you stuff here')
   });
