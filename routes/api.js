@@ -16,34 +16,25 @@ router.get('/felix',(req,res) => {
   });
 });
 
-router.put('/profile/:id', (req,res) => {
+router.put('/profile/', (req,res) => {
   console.log('you are here');
-  var userId = req.params.id;
-  if(userId == res.user._id){
-  console.log(userId);
-  User.findOne({ _id: userId }, function(err, foundUser) {
-  if (err) {
-    res.status(500).json({ error: err.message });
-  } else {
-    // update the users's profile
-    foundUser.firstname = req.body.firstname || foundUser.firstname;
-    foundUser.lastname = req.body.lastname || foundUser.lastname;
-    foundUser.email = req.body.email || foundUser.email;
-    foundUser.city = req.body.city || foundUser.city;
+
+  let user = res.user;
+    // update the u`sers's profile
+   user.firstname = req.body.firstname || user.firstname;
+   user.lastname = req.body.lastname || user.lastname;
+   user.email = req.body.email || user.email;
+   user.city = req.body.city || user.city;
 
     // save updated user in db
-    foundUser.save(function(err, savedUser) {
+   user.save(function(err, savedUser) {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
         res.status(200).json({message:'user updated',user:savedUser});
       }
     });
-  }
-});
-}else{
-res.status(500).json({message:'get the fuck out of here '});
-}
+
 });
 
 
