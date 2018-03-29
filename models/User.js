@@ -10,7 +10,8 @@ email:{type:String,
 password:String,
 firstname:String,
 lastname:String,
-city: {type: Schema.Types.ObjectId, ref: 'City'}
+city: {type: Schema.Types.ObjectId, ref: 'City'},
+dateJoined: {type: Date, default:Date()}
 });
 
 UserSchema.methods.comparePassword = function comparePassword(password, callback) {
@@ -25,7 +26,7 @@ UserSchema.pre('save', function saveHook(next) {
 
   return bcrypt.genSalt((saltError, salt) => {
     if (saltError) { return next(saltError); }
-    
+
     return bcrypt.hash(user.password, salt, (hashError, hash) => {
       if (hashError) { return next(hashError); }
 
