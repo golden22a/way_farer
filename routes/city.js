@@ -36,5 +36,27 @@ router.get('/:name',(req,res) => {
     }
   })
 });
+router.put('/:id', (req,res) => {
+  const cityId = req.params.id;
+  City.findOne({ _id: cityId }, function(err, foundCity) {
+  if (err) {
+    res.status(500).json({ error: err.message });
+  } else {
+    // update the city's profile
+    foundCity.name = req.body.name || foundCity.name;
+    foundCity.lat = req.body.lat || foundCity.lat;
+    foundCity.lng = req.body.lng || foundCity.lng;
+
+    // save updated city in db
+    foundCity.save(function(err, savedCity) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        res.status(200).json({message:'city updated',city:savedCity});
+      }
+    });
+  }
+  });
+});
 
 module.exports = router;
