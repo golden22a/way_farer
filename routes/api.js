@@ -16,7 +16,7 @@ router.get('/felix',(req,res) => {
   });
 });
 
-router.put('/profile/', (req,res) => {
+router.put('/profile', (req,res) => {
   console.log('you are here');
 
   let user = res.user;
