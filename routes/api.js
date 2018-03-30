@@ -5,21 +5,21 @@ const router = new express.Router();
 router.get('/okay', (req, res) => {
   res.status(200).json({
     message: "You're authorized to see this secret message.",
-    user:res.user
+    user:req.user
   });
 });
 
 router.get('/felix',(req,res) => {
   res.status(200).json({
     message:'this is felix you are here because your token is valid means you are signed in',
-    user:res.user
+    user:req.user
   });
 });
 
 router.put('/profile', (req,res) => {
   console.log('you are here');
 
-  let user = res.user;
+  let user = req.user;
     // update the u`sers's profile
    user.firstname = req.body.firstname || user.firstname;
    user.lastname = req.body.lastname || user.lastname;

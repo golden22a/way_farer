@@ -53,7 +53,7 @@ router.post('/post',(req,res) => {
     title:req.body.title,
     body:req.body.body,
     city:req.body.city,
-    user:res.user
+    user:req.user
   }, (err,created) => {
     if(err){
     res.status(500).json({message:'post not created check your form'});
@@ -85,6 +85,7 @@ router.put('/post/:id', (req,res) => {
     res.status(500).json({ error: err.message });
   } else {
     // update the post
+    if(foundPost.user.toString() == req.user._id.toString()){
     foundPost.title = req.body.title || foundPost.title;
     foundPost.body = req.body.body || foundPost.body;
     foundPost.city = req.body.city || foundPost.city;
@@ -97,8 +98,26 @@ router.put('/post/:id', (req,res) => {
         res.status(200).json({message:'post updated',post:savedPost});
       }
     });
-  }
+      }
+      else {
+        res.status(500).json({message:'unauthorized you can only update posts you created'});
+      }
+    }
   });
+
+
+
+});
+router.get('/profile/posts', (req,res) => {
+  Post.find({user:req.user},(err,found) =>{
+    if(err){
+      res.status(500).json({message:err.message});
+    }else{
+      res.status(200).json({posts:found});
+
+    }
+
+  })
 });
 
 module.exports = router;

@@ -27,7 +27,7 @@ module.exports = (req, res, next) => {
         return res.status(401).json({message:"token doesn't belong to any user"});
       }
 
-      res.user=user;
+      req.user=user;
       next();
     });
   });
