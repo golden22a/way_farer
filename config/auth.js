@@ -8,12 +8,16 @@ const config = require('./index.js');
  */
 module.exports = (req, res, next) => {
   if (!req.headers.token) {
+    console.log('loool');
+    console.log(req.headers);
+    console.log(req.headers['access-control-request-headers']);
     return res.status(401).json({message:'no token sent'});
   }
 
   // get the last part from a authorization header string like "bearer token-value"
   const token = req.headers.token;
-
+  console.log(req.headers);
+console.log(token);
   // decode the token using a secret key-phrase
   return jwt.verify(token, config.jwtSecret, (err, decoded) => {
     // the 401 code is for unauthorized status
