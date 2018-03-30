@@ -35,6 +35,7 @@ app.use('/city',cityRoutes);
 app.use('/api', postRoutes);
 app.get('/',function(req,res){
   console.log('do you stuff here')
+  res.json({message:'woooow'});
   });
 // Berto was here
 
