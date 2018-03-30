@@ -29,6 +29,8 @@ function validpost(payload){
     errors
   };
 }
+
+///////////SHOW ALL POSTS //////////////////
 router.get('/posts', (req,res) => {
     Post.find({},(err,allPosts) => {
       if(err){
@@ -39,7 +41,7 @@ router.get('/posts', (req,res) => {
 
 });
 
-
+///////////CREATE A POST //////////////////
 router.post('/post',(req,res) => {
   let valid=validpost(req.body);
   if(!valid.success){
@@ -48,7 +50,7 @@ router.post('/post',(req,res) => {
       message: valid.message,
       errors: valid.errors
     });
-  }else{
+  } else {
   Post.create({
     title:req.body.title,
     body:req.body.body,
@@ -65,6 +67,7 @@ router.post('/post',(req,res) => {
 }
 });
 
+///////////SHOW A POST //////////////////
 router.get('/post/:id',(req,res) => {
   var postId = req.params.id;
   Post.findOne({_id:postId}, (err,post) => {
@@ -77,6 +80,7 @@ router.get('/post/:id',(req,res) => {
   })
 });
 
+///////////UPDATE A POST //////////////////
 router.put('/post/:id', (req,res) => {
   const postId = req.params.id;
   Post.findOne({ _id: postId }, function(err, foundPost) {
@@ -96,6 +100,20 @@ router.put('/post/:id', (req,res) => {
         res.status(200).json({message:'post updated',post:savedPost});
       }
     });
+  }
+  });
+});
+
+///////////DELETE A POST //////////////////
+router.delete('/post/:id', (req,res) => {
+  const postId = req.params.id;
+  Post.findOneAndRemove({ _id: postId, user: req.user }, function(err, deletedPost) {
+  if (err) {
+    res.status(500).json({ error: err.message });
+  } else {
+    // delete post in db
+        res.status(200).json({message:'post deleted', post:deletedPost});
+
   }
   });
 });
