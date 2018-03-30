@@ -8,7 +8,8 @@ console.log(config);
 //carlos this is your tests
 // Configure app
 app.set('views', __dirname + '/views');      // Views directory
-app.use(express.static('public'));          // Static directory
+app.use(express.static('public'));// Static directory
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); // req.body
 //Yo Abdelhalim this is the response to the test!
 // Set CORS Headers

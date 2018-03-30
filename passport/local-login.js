@@ -14,8 +14,8 @@ module.exports = new PassportLocalStrategy({
   passReqToCallback: true
 }, (req, email, password, done) => {
   const userData = {
-    email: email.trim(),
-    password: password.trim()
+    email: req.body.email.trim(),
+    password: req.body.password.trim()
   };
 
   // find a user by email address
