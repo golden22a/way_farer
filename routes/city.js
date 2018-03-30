@@ -58,5 +58,16 @@ router.put('/:id', (req,res) => {
   }
   });
 });
+router.delete('/:id',(req,res) => {
+  let id=req.params.id;
+  City.findOneAndRemove({_id:id},(err,found) => {
+    if(err){
+      res.status(400).json({message})
+    }
+    else{
+      res.status(200).json({city:found});
+    }
+  })
+});
 
 module.exports = router;
