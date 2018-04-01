@@ -5,7 +5,6 @@ var bodyParser = require('body-parser'),
     passport = require('passport');
     const config = require('./config');
     var cors = require('cors')
-console.log(config);
 //carlos this is your tests
 // Configure app
 app.set('views', __dirname + '/views');      // Views directory
@@ -39,7 +38,6 @@ app.use('/api', apiRoutes);
 app.use('/city',cityRoutes);
 app.use('/api', postRoutes);
 app.get('/',function(req,res){
-  console.log('do you stuff here')
   res.json({message:'woooow'});
   });
 // Berto was here

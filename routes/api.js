@@ -17,7 +17,7 @@ router.get('/felix',(req,res) => {
 });
 
 router.put('/profile', (req,res) => {
-  console.log('you are here');
+
 
   let user = req.user;
     // update the u`sers's profile

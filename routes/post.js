@@ -137,7 +137,7 @@ router.get('/city/:id/posts',(req,res)=>{
         if(err)
         res.status(400).json({message:err.message})
         else{
-          console.log(allposts.length);
+          
           res.status(200).json({posts:allposts});
         }
 
