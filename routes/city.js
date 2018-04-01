@@ -36,6 +36,17 @@ router.get('/:name',(req,res) => {
     }
   })
 });
+router.get('/:id',(req,res) => {
+  let id=req.params.id;
+  City.findOne({_id:id},(err,found) => {
+    if(err){
+      res.status(400).json({message})
+    }
+    else{
+      res.status(200).json({city:found});
+    }
+  })
+});
 router.put('/:id', (req,res) => {
   const cityId = req.params.id;
   City.findOne({ _id: cityId }, function(err, foundCity) {
