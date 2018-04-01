@@ -119,7 +119,7 @@ router.delete('/post/:id', (req,res) => {
   }
   });
 });
-router.get('/user/post',(req,res) =>{
+router.get('/user/posts',(req,res) =>{
   Post.find({user:req.user},(err,allPosts) => {
     if(err){
       res.status(400).json({message:'problem problem big problem with post'});
@@ -137,6 +137,7 @@ router.get('/city/:id/posts',(req,res)=>{
         if(err)
         res.status(400).json({message:err.message})
         else{
+          console.log(allposts.length);
           res.status(200).json({posts:allposts});
         }
 
