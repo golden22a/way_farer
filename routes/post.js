@@ -1,6 +1,8 @@
 const express = require('express');
 const router = new express.Router();
 const Post = require('mongoose').model('Post');
+const City = require('mongoose').model('City');
+
 function validpost(payload){
   const errors = {};
   let isFormValid = true;
@@ -125,5 +127,23 @@ router.get('/user/post',(req,res) =>{
     res.status(200).json({posts: allPosts});
   });
 } );
+router.get('/city/:id/posts',(req,res)=>{
+  let id=req.params.id;
+  City.findOne({_id:id},(err,found) =>{
+    if(err)
+    res.status(400).json({message:'no city found'})
+    else{
+      Post.find({city:found},(err,allposts)=>{
+        if(err)
+        res.status(400).json({message:err.message})
+        else{
+          res.status(200).json({posts:allposts});
+        }
+
+      })
+    }
+  })
+
+});
 
 module.exports = router;
