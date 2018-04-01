@@ -36,7 +36,7 @@ router.get('/:name',(req,res) => {
     }
   })
 });
-router.get('/:id',(req,res) => {
+router.get('/:id/info',(req,res) => {
   let id=req.params.id;
   City.findOne({_id:id},(err,found) => {
     if(err){
