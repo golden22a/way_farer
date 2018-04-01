@@ -126,6 +126,7 @@ router.get('/user/posts',(req,res) =>{
     }
     res.status(200).json({posts: allPosts});
   });
+
 } );
 router.get('/city/:id/posts',(req,res)=>{
   let id=req.params.id;
@@ -137,7 +138,7 @@ router.get('/city/:id/posts',(req,res)=>{
         if(err)
         res.status(400).json({message:err.message})
         else{
-          
+
           res.status(200).json({posts:allposts});
         }
 
