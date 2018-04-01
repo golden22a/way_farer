@@ -10,6 +10,7 @@ email:{type:String,
 password:String,
 firstname:String,
 lastname:String,
+img:String,
 city: {type: Schema.Types.ObjectId, ref: 'City'},
 dateJoined: {type: Date, default:Date()}
 });

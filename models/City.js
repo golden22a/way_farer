@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 CitySchema = new Schema({
 name:String,
+img:String,
 lat:Number,
 lng:Number
 });

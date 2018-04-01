@@ -117,5 +117,13 @@ router.delete('/post/:id', (req,res) => {
   }
   });
 });
+router.get('/user/post',(req,res) =>{
+  Post.find({user:req.user},(err,allPosts) => {
+    if(err){
+      res.status(400).json({message:'problem problem big problem with post'});
+    }
+    res.status(200).json({posts: allPosts});
+  });
+} );
 
 module.exports = router;
