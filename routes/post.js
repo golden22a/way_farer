@@ -57,7 +57,7 @@ router.post('/post',(req,res) => {
     title:req.body.title,
     body:req.body.body,
     city:req.body.city,
-    user:res.user
+    user:req.user
   }, (err,created) => {
     if(err){
     res.status(500).json({message:'post not created check your form'});
@@ -134,7 +134,7 @@ router.get('/city/:id/posts',(req,res)=>{
     if(err)
     res.status(400).json({message:'no city found'})
     else{
-      Post.find({city:found},(err,allposts)=>{
+      Post.find({city:found}).sort({day_created:-1}).exec((err,allposts)=>{
         if(err)
         res.status(400).json({message:err.message})
         else{
