@@ -40,7 +40,7 @@ router.get('/:id/info',(req,res) => {
   let id=req.params.id;
   City.findOne({_id:id},(err,found) => {
     if(err){
-      res.status(400).json({message})
+      res.status(400).json({err:err.message})
     }
     else{
       res.status(200).json({city:found});
