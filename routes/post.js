@@ -85,7 +85,7 @@ router.get('/post/:id',(req,res) => {
 ///////////UPDATE A POST //////////////////
 router.put('/post/:id', (req,res) => {
   const postId = req.params.id;
-  Post.findOne({ _id: postId }, function(err, foundPost) {
+  Post.findOne({ _id: postId,user:req.user }, function(err, foundPost) {
   if (err) {
     res.status(500).json({ error: err.message });
   } else {
