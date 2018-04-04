@@ -8,12 +8,12 @@ function validpost(payload){
   let isFormValid = true;
   let message = '';
 
-  if (!payload || typeof payload.title !== 'string' || payload.title.trim().length < 0) {
+  if (!payload || typeof payload.title !== 'string' || payload.title.trim().length === 0) {
     isFormValid = false;
     errors.title = 'Please provide a  title.';
   }
 
-  if (!payload || typeof payload.body !== 'string' || payload.body.trim().length < 0) {
+  if (!payload || typeof payload.body !== 'string' || payload.body.trim().length === 0) {
     isFormValid = false;
     errors.body = 'please provie a body.';
   }
